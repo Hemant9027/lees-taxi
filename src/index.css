@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+@theme {
+  /* ——— Lee's Taxi Services #14 · Island palette ——— */
+  --color-ink-950: #0c1a17;
+  --color-ink-900: #101f1c;
+  --color-ink-800: #16302b;
+  --color-ink-700: #1e403a;
+  --color-ink-600: #2a524b;
+  --color-ink-500: #3a665e;
+
+  --color-sand-50: #fbf8f1;
+  --color-sand-100: #f6f1e7;
+  --color-sand-200: #efe7d6;
+  --color-sand-300: #e4d8bf;
+  --color-sand-400: #d3c19d;
+
+  --color-ocean-50: #eef6f3;
+  --color-ocean-100: #d8ebe5;
+  --color-ocean-200: #aed6cb;
+  --color-ocean-300: #7cb8aa;
+  --color-ocean-400: #489a89;
+  --color-ocean-500: #25816f;
+  --color-ocean-600: #176a5c;
+  --color-ocean-700: #12564b;
+  --color-ocean-800: #0f463d;
+  --color-ocean-900: #0c382f;
+
+  --color-conch-100: #f8e3da;
+  --color-conch-300: #e8a98f;
+  --color-conch-400: #dd8262;
+  --color-conch-500: #cd6643;
+  --color-conch-600: #b6502f;
+
+  --color-gold-400: #e2a63d;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(12 26 23 / 0.04), 0 12px 32px -12px rgb(12 26 23 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(12 26 23 / 0.05), 0 24px 48px -16px rgb(12 26 23 / 0.22);
+
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-kenburns: kenburns 24s ease-in-out infinite alternate;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes kenburns {
+    from { transform: scale(1) translateY(0); }
+    to { transform: scale(1.09) translateY(-1.5%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-sand-50);
+  color: var(--color-ink-900);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-ocean-600);
+  color: #fff;
+}
+
+/* ——— Typography helpers ——— */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* ——— Scroll reveal ——— */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ——— Image treatment ——— */
+.img-frame {
+  background: linear-gradient(160deg, var(--color-sand-200), var(--color-sand-300));
+}
+.img-fade {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.img-fade.is-loaded {
+  opacity: 1;
+}
+
+/* ——— Link underline micro-interaction ——— */
+.link-line {
+  position: relative;
+}
+.link-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.link-line:hover::after,
+.link-line:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ——— Cards ——— */
+.card-hover {
+  transition:
+    transform 0.6s var(--ease-out-expo),
+    box-shadow 0.6s var(--ease-out-expo);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ——— Film grain / texture ——— */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+}
+
+/* ——— Marquee ——— */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ——— Hero ken burns ——— */
+.kenburns {
+  animation: var(--animate-kenburns);
+}
+
+/* ——— Focus states ——— */
+:focus-visible {
+  outline: 2px solid var(--color-ocean-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ——— Scrollbar ——— */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-sand-100); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-600);
+  border-radius: 8px;
+  border: 2px solid var(--color-sand-100);
+}
+
+/* ——— Hide scrollbars for snap rows ——— */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ——— Forms ——— */
+.field {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid var(--color-sand-300);
+  background: #fff;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-ink-900);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.field::placeholder { color: #9aa4a0; }
+.field:focus {
+  outline: none;
+  border-color: var(--color-ocean-500);
+  box-shadow: 0 0 0 3px rgb(37 129 111 / 0.18);
+}
+
+/* ——— Reduced motion ——— */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .kenburns, .marquee-track { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
