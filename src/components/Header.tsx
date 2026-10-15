@@ -104,7 +104,7 @@ export default function Header() {
               {SITE.phoneDisplay}
             </a>
             <Link
-              to="/contact"
+              to="/booking-demo"
               className="inline-flex min-h-11 items-center rounded-full bg-ocean-600 px-5 text-[13.5px] font-bold tracking-tight text-white shadow-soft transition-all hover:bg-ocean-700 hover:shadow-lift"
             >
               Book a Ride
@@ -185,7 +185,7 @@ export default function Header() {
               Call {SITE.phoneDisplay}
             </a>
             <Link
-              to="/contact"
+              to="/booking-demo"
               className="flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-sand-100 text-base font-bold text-ink-900"
             >
               Book a Ride

@@ -185,7 +185,7 @@ export function BookButton({
 }) {
   return (
     <Link
-      to="/contact"
+      to="/booking-demo"
       className={cn(
         "group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-6 text-[15px] font-bold tracking-tight shadow-soft transition-all duration-300 hover:shadow-lift",
         tone === "ink" && "bg-ink-900 text-sand-50 hover:bg-ink-800",

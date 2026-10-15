@@ -11,6 +11,7 @@ import GalleryPage from "./pages/GalleryPage";
 import Contact from "./pages/Contact";
 import Airbnb from "./pages/Airbnb";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import BookingDemo from "./pages/BookingDemo";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/airbnb" element={<Airbnb />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/booking-demo" element={<BookingDemo />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
